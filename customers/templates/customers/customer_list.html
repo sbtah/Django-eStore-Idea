@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Customers{% endblock title %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <h5 class="text-center pt-2">Customers</h5>
+            </div>
+            <div class="card card-body">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for customer in customers %}
+                        <tr>
+                            <td><a href="{{ customer.get_absolute_url }}">{{ customer.full_name }}</a></td>
+                            <td>{{ customer.phone }}</td>
+                            <td>{{ customer.email }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

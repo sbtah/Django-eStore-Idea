@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #ebeff5;
+}
+
+#total-orders {
+    background-color: #2d8ac8;
+}
+
+#orders-delivered {
+    background-color: #4ec0b1;
+}
+
+#orders-pending {
+    background-color: #e05f5f;
+}
+
+a {
+    text-decoration: none;
+}
