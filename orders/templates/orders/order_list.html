@@ -8,15 +8,28 @@
                 <h5 class="text-center pt-2">Orders</h5>
             </div>
             <div class="card card-body">
-                <table class="table">
-                    <tr>
-                        <th>Status</th>
-                        <th>Customer</th>
-                        <th>Product</th>
-                    </tr>
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Status</th>
+                            <th>Product</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                        <tr>
+                            <th><a href="{{ order.get_absolute_url }}">{{ order.id }}</a></th>
+                            <td><a href="{{ order.customer.get_absolute_url }}">{{ order.customer.full_name }}</a></td>
+                            <td><span class="mystatus"><strong>{{ order.status }}</strong></span></td>
+                            <td><a href="{{ order.product.get_absolute_url }}">{{ order.product.name }}</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
-{% endblock content %}
+{% endblock %}

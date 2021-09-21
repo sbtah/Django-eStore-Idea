@@ -43,10 +43,16 @@
                 {% for order in orders %}
                 <tbody>
                     <tr>
-                        <th><a href="#">{{ order.id }}</a></th>
-                        <th><a href="#">{{ order.product.name }}</a></th>
+                        <th><a class="mystatus-id" href="{{ order.get_absolute_url }}">{{ order.id }}</a></th>
+                        <th><a href="{{ order.product.get_absolute_url }}">{{ order.product.name }}</a></th>
                         <th>{{ order.date_created }}</th>
-                        <th>{{ order.status }}</th>
+                        {% if order.status == 'PENDING'%}
+                        <th><span class="mystatus-pending"><strong>{{ order.status }}</strong></span></th>
+                        {% elif order.status == 'READY' %}
+                        <th><span class="mystatus-ready"><strong>{{ order.status }}</strong></span></th>
+                        {% elif order.status == 'DELIVERED' %}
+                        <th><span class="mystatus-delivered"><strong>{{ order.status }}</strong></span></th>
+                        {% endif %}
                         <th><a class="btn btn-sm btn-info" href="#">Update</a></th>
                         <th><a class="btn btn-sm btn-danger" href="#">Remove</a></th>
                     </tr>

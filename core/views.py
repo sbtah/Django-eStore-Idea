@@ -1,11 +1,18 @@
 from django.shortcuts import render
 from orders.models import Order
 from customers.models import Customer
+from products.models import Product
 
 
 def home_page(request):
 
-    return render(request, 'core/home_page.html', {})
+    products = Product.objects.all()
+
+    return render(request, 'core/home_page.html', {
+
+        'products': products,
+
+    })
 
 
 def dashboard(request):

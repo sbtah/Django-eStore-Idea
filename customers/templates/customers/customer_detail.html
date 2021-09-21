@@ -6,11 +6,10 @@
     <div class="col-md">
         <div class="card card-body">
             <h5>Customer:</h5>
-            <p>{{ customer.full_name }}</p>
+            <p><strong>{{ customer.full_name }}</strong></p>
             <hr>
             <a class="btn btn-info  btn-sm btn-block mt-2" href="">Update Customer</a>
             <a class="btn btn-danger  btn-sm btn-block mt-2" href="">Delete Customer</a>
-
         </div>
     </div>
     <div class="col-md">
@@ -44,12 +43,12 @@
 <div class="row">
     <div class="col-md">
         <div class="card card-body">
-            <table class="table table-hover align-middle">
+            <table class="table table-hover align-middle text-center">
                 <thead>
                     <tr>
                         <th>Product</th>
                         <th>Category</th>
-                        <th>Date Orderd</th>
+
                         <th>Status</th>
                         <th>Update</th>
                         <th>Remove</th>
@@ -60,10 +59,12 @@
                     <tr>
                         <th>{{ order.product.name }}</th>
                         <th>{{ order.product.category }}</th>
-                        <th>{{ order.date_created }}</th>
-                        <th>{{ order.status }}</th>
-                        <th><a class="btn btn-sm btn-info" href="#">Update</a></th>
-                        <th><a class="btn btn-sm btn-danger" href="#">Remove</a></th>
+
+                        <th><strong class="mystatus">{{ order.status }}</strong></th>
+                        <th><a class="btn btn-sm btn-info m-2 w-100" href="#">Update</a></th>
+                        <th><a class="btn btn-sm btn-danger m-2 w-100" href="#">Remove</a></th>
+
+
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -71,5 +72,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}

@@ -30,6 +30,7 @@ class Product(models.Model):
         return f"{self.id}: {self.name} - {self.price}"
 
     def get_absolute_url(self):
+
         return reverse('products:product-detail', kwargs={
             'pk': self.pk,
         })

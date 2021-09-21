@@ -1,6 +1,13 @@
 from django.shortcuts import render
+from .models import Brand
 
 
 def brand_list(request):
 
-    return render(request, 'brands/brand_list.html', {})
+    brands = Brand.objects.all()
+
+    return render(request, 'brands/brand_list.html', {
+
+        'brands': brands,
+
+    })

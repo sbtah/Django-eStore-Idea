@@ -16,7 +16,7 @@
                     </tr>
                     {% for product in products %}
                     <tr>
-                        <td>{{ product.name }}</td>
+                        <td><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></td>
                         <td>{{ product.category}}</td>
                         <td>{{ product.price }}</td>
                     </tr>
