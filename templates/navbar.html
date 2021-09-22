@@ -37,7 +37,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="{% url 'products:product-list' %}">Products</a></li>
-                        <li><a class="dropdown-item" href="#">Add Product</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products:product-create' %}">Add Product</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </li>
@@ -59,7 +59,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="{% url 'brands:brand-list' %}">Brands</a></li>
-                        <li><a class="dropdown-item" href="#">Add Brand</a></li>
+                        <li><a class="dropdown-item" href="{% url 'brands:brand-create' %}">Add Brand</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </li>

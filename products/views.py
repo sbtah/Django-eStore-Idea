@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Product
+from .forms import ProductForm
 
 
 # All Products.
@@ -26,5 +27,23 @@ def product_detail(request, pk):
         'product': product,
         'related_orders': related_orders,
         'total_orders': total_orders,
+
+    })
+
+
+def product_create(request):
+
+    form = ProductForm()
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('products:product-list')
+
+    return render(request, 'products/product_create.html', {
+
+        'form': form,
 
     })

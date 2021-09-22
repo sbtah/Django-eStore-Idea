@@ -20,9 +20,7 @@ body {
     background-color: #e05f5f;
 }
 
-a {
-    text-decoration: none;
-}
+
 
 .mystatus-pending {
     color: #ad0808;
@@ -43,7 +41,11 @@ a {
 }
 
 .mystatus-id {
+    text-decoration: none;  
+    display: block;
     color: rgb(207, 48, 48);
     font-weight: bold;
     font-size: 0.9rem;
+    border: 2px solid rgb(214, 14, 41);
+    border-radius: 0.2rem;
 }

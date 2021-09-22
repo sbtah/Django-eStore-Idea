@@ -10,7 +10,7 @@
         <hr>
         <div class="card card-body shadow">
             <a class="btn btn-info btn-sm btn-block" href="{% url 'customers:customer-create' %}">Create Customer</a>
-            <table class="table table-hover align-middle">
+            <table class="table table-hover text-center align-middle">
                 <tr>
                     <th>Customer</th>
                     <th>Phone</th>
@@ -27,9 +27,9 @@
     <div class="col-md-7">
         <h5>Last 5 Orders:</h5>
         <hr>
-        <div class="card card-body shadow">
+        <div class="card card-body text-center shadow">
             <a class="btn btn-info btn-sm btn-block" href="{% url 'orders:order-create' %}">Create Order</a>
-            <table class="table table-hover align-middle">
+            <table class="table table-hover text-center align-middle">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -53,8 +53,8 @@
                         {% elif order.status == 'DELIVERED' %}
                         <th><span class="mystatus-delivered"><strong>{{ order.status }}</strong></span></th>
                         {% endif %}
-                        <th><a class="btn btn-sm btn-info" href="#">Update</a></th>
-                        <th><a class="btn btn-sm btn-danger" href="#">Remove</a></th>
+                        <th><a class="btn btn-sm btn-info w-100" href="#">Update</a></th>
+                        <th><a class="btn btn-sm btn-danger w-100" href="#">Remove</a></th>
                     </tr>
                 </tbody>
                 {% endfor %}

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}{{ brand.name }}{% endblock title %}
+{% block content %}
+
+<div class="row mt-5">
+    <div class="col-md">
+        <div class="card card-body shadow">
+            <h5>Brand:</h5>
+            <p><strong>{{ brand.name }}</strong></p>
+            <hr>
+            <a class="btn btn-info  btn-sm btn-block mt-2" href="">Update Brand</a>
+            <a class="btn btn-danger  btn-sm btn-block mt-2" href="">Delete Brand</a>
+        </div>
+    </div>
+    <div class="col-md">
+        <div class="card card-body shadow">
+            <h5>Contact Information</h5>
+            <hr>
+            <p>Email: {{ brand.email }}</p>
+            <p>Phone: {{ brand.phone }}</p>
+        </div>
+    </div>
+    <div class="col-md">
+        <div class="card card-body shadow">
+            <h5>Total Products</h5>
+            <hr>
+            <h1 style="text-align: center;padding: 10px">{{ total_orders }}</h1>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col">
+        <div class="card card-body shadow">
+            <form method="get">
+
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body shadow">
+            <h5>Products :</h5>
+            <table class="table table-hover align-middle text-center">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Update</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in related_products %}
+                    <tr>
+                        <th>{{ product.name }}</th>
+                        <th>{{ product.category }}</th>
+                        <th><strong>{{ product.price }}</strong></th>
+                        <th><a class="btn btn-sm btn-info m-2 w-100" href="#">Update</a></th>
+                        <th><a class="btn btn-sm btn-danger m-2 w-100" href="#">Remove</a></th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -8,7 +8,7 @@
                 <h5 class="text-center pt-2">Brands:</h5>
             </div>
             <div class="card card-body">
-                <table class="table table-hover align-middle">
+                <table class="table table-hover text-center align-middle">
                     <thead>
                         <tr>
                             <th>Brand Name</th>
@@ -20,7 +20,8 @@
                     <tbody>
                         {% for brand in brands %}
                         <tr>
-                            <th><strong class="mystatus">{{ brand.name }}</strong></th>
+                            <th><strong class="mystatus"><a href="{{ brand.get_absolute_url }}">{{ brand }}</a></strong>
+                            </th>
                             <td><strong>{{ brand.address }}</strong></td>
                             <td><strong>{{ brand.phone }}</strong></td>
                             <td>{{ brand.email }}</td>
