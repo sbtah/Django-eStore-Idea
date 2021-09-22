@@ -1,5 +1,6 @@
-from customers.models import Customer
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .models import Customer
+from .forms import CustomerForm
 
 
 def customer_list(request):
@@ -21,4 +22,21 @@ def customer_detail(request, pk):
         'customer': customer,
         'related_orders': related_orders,
         'total_orders': total_orders,
+    })
+
+
+def customer_create(request):
+
+    form = CustomerForm()
+
+    if request.method == 'POST':
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('core:dashboard')
+
+    return render(request, 'customers/customer_create.html', {
+
+        'form': form,
+
     })

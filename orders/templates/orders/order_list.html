@@ -4,10 +4,10 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md">
-            <div class="card card-body">
+            <div class="card card-body shadow">
                 <h5 class="text-center pt-2">Orders</h5>
             </div>
-            <div class="card card-body">
+            <div class="card card-body shadow">
                 <table class="table table-hover align-middle">
                     <thead>
                         <tr>
@@ -22,7 +22,13 @@
                         <tr>
                             <th><a href="{{ order.get_absolute_url }}">{{ order.id }}</a></th>
                             <td><a href="{{ order.customer.get_absolute_url }}">{{ order.customer.full_name }}</a></td>
-                            <td><span class="mystatus"><strong>{{ order.status }}</strong></span></td>
+                            {% if order.status == 'PENDING'%}
+                            <th><span class="mystatus-pending"><strong>{{ order.status }}</strong></span></th>
+                            {% elif order.status == 'READY' %}
+                            <th><span class="mystatus-ready"><strong>{{ order.status }}</strong></span></th>
+                            {% elif order.status == 'DELIVERED' %}
+                            <th><span class="mystatus-delivered"><strong>{{ order.status }}</strong></span></th>
+                            {% endif %}
                             <td><a href="{{ order.product.get_absolute_url }}">{{ order.product.name }}</a></td>
                         </tr>
                         {% endfor %}

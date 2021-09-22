@@ -25,19 +25,19 @@ a {
 }
 
 .mystatus-pending {
-    color: rgb(200, 33, 41);
+    color: #ad0808;
     font-weight: bold;
     font-size: 0.9rem;
 }
 
 .mystatus-ready {
-    color: rgb(185, 197, 20);
+    color: #0e41eb;;
     font-weight: bold;
     font-size: 0.9rem;
 }
 
 .mystatus-delivered {
-    color: rgb(30, 187, 187);
+    color: #08c3f1;
     font-weight: bold;
     font-size: 0.9rem;
 }

@@ -4,7 +4,7 @@
 
 <div class="row mt-5">
     <div class="col-md">
-        <div class="card card-body">
+        <div class="card card-body shadow">
             <h5>Customer:</h5>
             <p><strong>{{ customer.full_name }}</strong></p>
             <hr>
@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="col-md">
-        <div class="card card-body">
+        <div class="card card-body shadow">
             <h5>Contact Information</h5>
             <hr>
             <p>Email: {{ customer.email }}</p>
@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="col-md">
-        <div class="card card-body">
+        <div class="card card-body shadow">
             <h5>Total Orders</h5>
             <hr>
             <h1 style="text-align: center;padding: 10px">{{ total_orders }}</h1>
@@ -31,7 +31,7 @@
 <br>
 <div class="row">
     <div class="col">
-        <div class="card card-body">
+        <div class="card card-body shadow">
             <form method="get">
 
                 <button class="btn btn-primary" type="submit">Search</button>
@@ -42,12 +42,14 @@
 <br>
 <div class="row">
     <div class="col-md">
-        <div class="card card-body">
+        <div class="card card-body shadow">
+            <h5>Orders :</h5>
             <table class="table table-hover align-middle text-center">
                 <thead>
                     <tr>
+                        <th>Order ID</th>
                         <th>Product</th>
-                        <th>Category</th>
+
 
                         <th>Status</th>
                         <th>Update</th>
@@ -57,10 +59,11 @@
                 <tbody>
                     {% for order in related_orders %}
                     <tr>
+                        <th>{{ order.id }}</th>
                         <th>{{ order.product.name }}</th>
-                        <th>{{ order.product.category }}</th>
 
-                        <th><strong class="mystatus">{{ order.status }}</strong></th>
+
+                        <th><span class="mystatus-pending"><strong>{{ order.status }}</strong></span></th>
                         <th><a class="btn btn-sm btn-info m-2 w-100" href="#">Update</a></th>
                         <th><a class="btn btn-sm btn-danger m-2 w-100" href="#">Remove</a></th>
 

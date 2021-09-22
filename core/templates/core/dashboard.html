@@ -8,8 +8,8 @@
     <div class="col-md-5">
         <h5>Customers:</h5>
         <hr>
-        <div class="card card-body">
-            <a class="btn btn-primary btn-sm btn-block" href="#">Create Customer</a>
+        <div class="card card-body shadow">
+            <a class="btn btn-info btn-sm btn-block" href="{% url 'customers:customer-create' %}">Create Customer</a>
             <table class="table table-hover align-middle">
                 <tr>
                     <th>Customer</th>
@@ -27,8 +27,8 @@
     <div class="col-md-7">
         <h5>Last 5 Orders:</h5>
         <hr>
-        <div class="card card-body">
-            <a class="btn btn-primary btn-sm btn-block" href="#">Create Order</a>
+        <div class="card card-body shadow">
+            <a class="btn btn-info btn-sm btn-block" href="{% url 'orders:order-create' %}">Create Order</a>
             <table class="table table-hover align-middle">
                 <thead>
                     <tr>
@@ -44,7 +44,7 @@
                 <tbody>
                     <tr>
                         <th><a class="mystatus-id" href="{{ order.get_absolute_url }}">{{ order.id }}</a></th>
-                        <th><a href="{{ order.product.get_absolute_url }}">{{ order.product.name }}</a></th>
+                        <th><a href="{{ order.get_absolute_url }}">{{ order.product.name }}</a></th>
                         <th>{{ order.date_created }}</th>
                         {% if order.status == 'PENDING'%}
                         <th><span class="mystatus-pending"><strong>{{ order.status }}</strong></span></th>
