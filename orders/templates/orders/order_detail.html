@@ -9,7 +9,8 @@
             <hr>
             <a class="btn btn-info  btn-sm btn-block mt-2" href="{% url 'orders:order-update' order.pk %}">Update
                 Order</a>
-            <a class="btn btn-danger  btn-sm btn-block mt-2" href="#">Delete Delete</a>
+            <a class="btn btn-danger  btn-sm btn-block mt-2" href="{% url 'orders:order-delete' order.pk %}">Delete
+                Delete</a>
 
         </div>
     </div>
@@ -27,12 +28,12 @@
             <p><span class="mystatus-delivered"><strong>{{ order.status }}</strong></span></p>
             {% endif %}
 
-            <p>Created: <strong>{{ order.created }}</strong></p>
+            <p>Created: <strong>{{ order.date_created }}</strong></p>
         </div>
     </div>
     <div class="col-md">
         <div class="card card-body shadow">
-            <h5>Total orders in DB:</h5>
+            <h5>All orders in DB:</h5>
             <hr>
             <h1 style="text-align: center;padding: 10px">{{ total_orders }}</h1>
         </div>
@@ -69,7 +70,7 @@
                     <tr>
                         <th>{{ order.id }}</th>
                         <th class="my-main-text">{{ order.customer.full_name }}</th>
-                        <th class="my-main-text">{{ order.created }}</th>
+                        <th class="my-main-text">{{ order.date_created }}</th>
                         {% if order.status == 'PENDING'%}
                         <th><span class="mystatus-pending"><strong>{{ order.status }}</strong></span></th>
                         {% elif order.status == 'READY' %}
@@ -77,8 +78,6 @@
                         {% elif order.status == 'DELIVERED' %}
                         <th><span class="mystatus-delivered"><strong>{{ order.status }}</strong></span></th>
                         {% endif %}
-
-
                         <th><a class="btn btn-sm btn-info m-2 w-100" href="#">Update</a></th>
                         <th><a class="btn btn-sm btn-danger m-2 w-100" href="#">Remove</a></th>
                     </tr>

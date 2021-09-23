@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}Dashboard{% endblock title %}
 {% block content %}
-
-
 {% include 'status.html' %}
 <div class="row mt-5">
     <div class="col-md-5">
@@ -53,7 +51,8 @@
                         <th><span class="mystatus-delivered"><strong>{{ order.status }}</strong></span></th>
                         {% endif %}
                         <th><a class="btn btn-sm btn-info w-100" href="">Update</a></th>
-                        <th><a class="btn btn-sm btn-danger w-100" href="#">Remove</a></th>
+                        <th><a class="btn btn-sm btn-danger w-100"
+                                href="{% url 'orders:order-delete' order.pk %}">Remove</a></th>
                     </tr>
                 </tbody>
                 {% endfor %}

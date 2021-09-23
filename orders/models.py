@@ -19,7 +19,7 @@ class Order(models.Model):
     status = models.CharField(max_length=120, choices=STATUS)
 
     def __str__(self):
-        return f"Order: {self.pk}, {self.product.name} : {self.status}"
+        return f"Order: {self.pk}, {self.product.name}"
 
     def get_absolute_url(self):
         return reverse('orders:order-detail', kwargs={

@@ -7,7 +7,7 @@ from .forms import OrderForm
 
 def order_list(request):
 
-    orders = Order.objects.all()
+    orders = Order.objects.all().order_by('-created')
 
     return render(request, 'orders/order_list.html', {
 
@@ -65,5 +65,20 @@ def order_update(request, pk):
     return render(request, 'orders/order_create.html', {
 
         'form': form,
+
+    })
+
+
+def order_delete(request, pk):
+
+    order = Order.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        order.delete()
+        return redirect('orders:order-list')
+
+    return render(request, 'orders/order_delete.html', {
+
+        'order': order,
 
     })
