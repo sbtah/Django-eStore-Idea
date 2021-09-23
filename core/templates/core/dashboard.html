@@ -17,8 +17,8 @@
                 </tr>
                 {% for customer in customers %}
                 <tr>
-                    <th><a href="{{ customer.get_absolute_url }}">{{ customer.full_name }}</a></th>
-                    <th>{{ customer.phone }}</th>
+                    <th><a class="my-main-text" href="{{ customer.get_absolute_url }}">{{ customer.full_name }}</a></th>
+                    <th class="my-main-text">{{ customer.phone }}</th>
                 </tr>
                 {% endfor %}
             </table>
@@ -32,7 +32,6 @@
             <table class="table table-hover text-center align-middle">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
                         <th scope="col">Product</th>
                         <th scope="col">Date Ordered</th>
                         <th scope="col">Status</th>
@@ -43,9 +42,9 @@
                 {% for order in orders %}
                 <tbody>
                     <tr>
-                        <th><a class="mystatus-id" href="{{ order.get_absolute_url }}">{{ order.id }}</a></th>
-                        <th><a href="{{ order.get_absolute_url }}">{{ order.product.name }}</a></th>
-                        <th>{{ order.date_created }}</th>
+                        <th><a class="my-main-text" href="{{ order.get_absolute_url }}">{{ order.product.name }}</a>
+                        </th>
+                        <th class="my-main-text">{{ order.date_created }}</th>
                         {% if order.status == 'PENDING'%}
                         <th><span class="mystatus-pending"><strong>{{ order.status }}</strong></span></th>
                         {% elif order.status == 'READY' %}

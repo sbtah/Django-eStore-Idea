@@ -60,10 +60,14 @@
                     {% for order in related_orders %}
                     <tr>
                         <th>{{ order.id }}</th>
-                        <th>{{ order.product.name }}</th>
-
-
+                        <th class="my-main-text">{{ order.product.name }}</th>
+                        {% if order.status == 'PENDING'%}
                         <th><span class="mystatus-pending"><strong>{{ order.status }}</strong></span></th>
+                        {% elif order.status == 'READY' %}
+                        <th><span class="mystatus-ready"><strong>{{ order.status }}</strong></span></th>
+                        {% elif order.status == 'DELIVERED' %}
+                        <th><span class="mystatus-delivered"><strong>{{ order.status }}</strong></span></th>
+                        {% endif %}
                         <th><a class="btn btn-sm btn-info m-2 w-100" href="#">Update</a></th>
                         <th><a class="btn btn-sm btn-danger m-2 w-100" href="#">Remove</a></th>
 

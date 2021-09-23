@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import Product
 from .forms import ProductForm
 
@@ -20,7 +21,7 @@ def product_detail(request, pk):
 
     related_orders = product.order_set.all()
 
-    total_orders = related_orders.count()
+    total_orders = related_orders.count() / 100
 
     return render(request, 'products/product_detail.html', {
 
@@ -40,6 +41,7 @@ def product_create(request):
 
         if form.is_valid():
             form.save()
+            messages.success(request, ('Product created.'))
             return redirect('products:product-list')
 
     return render(request, 'products/product_create.html', {

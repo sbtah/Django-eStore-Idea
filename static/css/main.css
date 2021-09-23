@@ -48,4 +48,15 @@ body {
     font-size: 0.9rem;
     border: 2px solid rgb(214, 14, 41);
     border-radius: 0.2rem;
+    }
+
+.my-main-text {
+    color: grey;
+    text-decoration: none;
+}
+
+th a {
+    color: grey;
+    text-decoration: none;
+    font-size: 0.9rem;
 }
