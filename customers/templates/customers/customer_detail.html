@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Customer{% endblock title %}
+{% block title %}{{ customer.full_name }}{% endblock title %}
 {% block content %}
 
 <div class="row mt-5">
@@ -8,7 +8,8 @@
             <h5>Customer:</h5>
             <p><strong>{{ customer.full_name }}</strong></p>
             <hr>
-            <a class="btn btn-info  btn-sm btn-block mt-2" href="">Update Customer</a>
+            <a class="btn btn-info  btn-sm btn-block mt-2"
+                href="{% url 'customers:customer-update' customer.pk %}">Update Customer</a>
             <a class="btn btn-danger  btn-sm btn-block mt-2" href="">Delete Customer</a>
         </div>
     </div>
@@ -18,6 +19,7 @@
             <hr>
             <p>Email: {{ customer.email }}</p>
             <p>Phone: {{ customer.phone }}</p>
+            <p>Address: {{ customer.address }}</p>
         </div>
     </div>
     <div class="col-md">
