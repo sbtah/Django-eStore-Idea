@@ -1,5 +1,7 @@
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.urls import reverse
 from .models import Brand
 from .forms import BrandForm
 
@@ -40,6 +42,26 @@ def brand_create(request):
             form.save()
             messages.success(request, ('Brand added.'))
             return redirect('brands:brand-list')
+
+    return render(request, 'brands/brand_create.html', {
+
+        'form': form,
+
+    })
+
+
+def brand_update(request, pk):
+
+    product = Brand.objects.get(pk=pk)
+    form = BrandForm(instance=product)
+
+    if request.method == 'POST':
+        form = BrandForm(request.POST, instance=product)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, ('Brand updated.'))
+            return HttpResponseRedirect(reverse('brands:brand-detail', args=[product.pk]))
 
     return render(request, 'brands/brand_create.html', {
 
