@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Customer{% endblock title %}
+{% block title %}{{ product.name }}{% endblock title %}
 {% block content %}
 
 <div class="row mt-5">
@@ -8,7 +8,8 @@
             <h5>Product:</h5>
             <p><strong>{{ product.name }}</strong></p>
             <hr>
-            <a class="btn btn-info  btn-sm btn-block mt-2" href="#">Update Product</a>
+            <a class="btn btn-info  btn-sm btn-block mt-2" href="{% url 'products:product-update' product.pk %}">Update
+                Product</a>
             <a class="btn btn-danger  btn-sm btn-block mt-2" href="#">Delete Product</a>
 
         </div>

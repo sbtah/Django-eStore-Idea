@@ -2,10 +2,10 @@
 {% block title%} Add Product {% endblock %}
 {% block content %}
 <div class="container mt-5 shadow p-3 mb-5 rounded">
-    <h2 class="dsubhead fs-4 mt-3 mb-0 text-center pb-5">Add Product:</h2>
+    <h2 class="dsubhead fs-4 mt-3 mb-0 text-center pb-5">Product:</h2>
     <form class="" action="" method="POST" class="">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form }}
         <button class="form-control btn btn-info" type="submit" name="Submit">Add:</button>
     </form>
 </div>

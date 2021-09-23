@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import HttpResponseRedirect, render, redirect
 from django.contrib import messages
+from django.urls import reverse
 from .models import Product
 from .forms import ProductForm
 
@@ -43,6 +44,26 @@ def product_create(request):
             form.save()
             messages.success(request, ('Product created.'))
             return redirect('products:product-list')
+
+    return render(request, 'products/product_create.html', {
+
+        'form': form,
+
+    })
+
+
+def product_update(request, pk):
+
+    product = Product.objects.get(pk=pk)
+    form = ProductForm(instance=product)
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, instance=product)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, ('Product updated.'))
+            return HttpResponseRedirect(reverse('products:product-detail', args=[product.pk]))
 
     return render(request, 'products/product_create.html', {
 
