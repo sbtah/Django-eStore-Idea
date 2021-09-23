@@ -10,7 +10,8 @@
             <hr>
             <a class="btn btn-info  btn-sm btn-block mt-2" href="{% url 'brands:brand-update' brand.pk %}">Update
                 Brand</a>
-            <a class="btn btn-danger  btn-sm btn-block mt-2" href="">Delete Brand</a>
+            <a class="btn btn-danger  btn-sm btn-block mt-2" href="{% url 'brands:brand-delete' brand.pk %}">Delete
+                Brand</a>
         </div>
     </div>
     <div class="col-md">

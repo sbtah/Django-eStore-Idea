@@ -10,7 +10,8 @@
             <hr>
             <a class="btn btn-info  btn-sm btn-block mt-2"
                 href="{% url 'customers:customer-update' customer.pk %}">Update Customer</a>
-            <a class="btn btn-danger  btn-sm btn-block mt-2" href="">Delete Customer</a>
+            <a class="btn btn-danger  btn-sm btn-block mt-2"
+                href="{% url 'customers:customer-delete' customer.pk %}">Delete Customer</a>
         </div>
     </div>
     <div class="col-md">
@@ -70,10 +71,10 @@
                         {% elif order.status == 'DELIVERED' %}
                         <th><span class="mystatus-delivered"><strong>{{ order.status }}</strong></span></th>
                         {% endif %}
-                        <th><a class="btn btn-sm btn-info m-2 w-100" href="#">Update</a></th>
-                        <th><a class="btn btn-sm btn-danger m-2 w-100" href="#">Remove</a></th>
-
-
+                        <th><a class="btn btn-sm btn-info m-2 w-100"
+                                href="{% url 'orders:order-update' order.pk %}">Update</a></th>
+                        <th><a class="btn btn-sm btn-danger m-2 w-100"
+                                href="{% url 'orders:order-delete' order.pk %}">Remove</a></th>
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -63,3 +63,19 @@ def customer_update(request, pk):
         'form': form,
 
     })
+
+
+def customer_delete(request, pk):
+
+    customer = Customer.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        customer.delete()
+        messages.success(request, ('Customer deleted.'))
+        return redirect('customers:customer-list')
+
+    return render(request, 'customers/customer_delete.html', {
+
+        'customer': customer,
+
+    })

@@ -68,3 +68,19 @@ def brand_update(request, pk):
         'form': form,
 
     })
+
+
+def brand_delete(request, pk):
+
+    brand = Brand.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        brand.delete()
+        messages.success(request, ('Brand deleted.'))
+        return redirect('brands:brand-list')
+
+    return render(request, 'brands/brand_delete.html', {
+
+        'brand': brand,
+
+    })

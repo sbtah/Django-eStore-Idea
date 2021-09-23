@@ -13,12 +13,14 @@
                         <th>Product</th>
                         <th>Category</th>
                         <th>Price</th>
+                        <th>Brand</th>
                     </tr>
                     {% for product in products %}
                     <tr>
                         <th><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></th>
                         <th>{{ product.category}}</th>
                         <th>{{ product.price }}</th>
+                        <th>{{ product.brand }}</th>
                     </tr>
                     {% endfor %}
                 </table>
