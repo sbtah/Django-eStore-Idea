@@ -70,3 +70,19 @@ def product_update(request, pk):
         'form': form,
 
     })
+
+
+def product_delete(request, pk):
+
+    product = Product.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        product.delete()
+        messages.success(request, ('Product deleted.'))
+        return redirect('products:product-list')
+
+    return render(request, 'products/product_delete.html', {
+
+        'product': product,
+
+    })

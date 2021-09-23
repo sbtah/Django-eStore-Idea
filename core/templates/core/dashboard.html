@@ -50,7 +50,8 @@
                         {% elif order.status == 'DELIVERED' %}
                         <th><span class="mystatus-delivered"><strong>{{ order.status }}</strong></span></th>
                         {% endif %}
-                        <th><a class="btn btn-sm btn-info w-100" href="">Update</a></th>
+                        <th><a class="btn btn-sm btn-info w-100"
+                                href="{% url 'orders:order-update' order.pk %}">Update</a></th>
                         <th><a class="btn btn-sm btn-danger w-100"
                                 href="{% url 'orders:order-delete' order.pk %}">Remove</a></th>
                     </tr>

@@ -10,7 +10,8 @@
             <hr>
             <a class="btn btn-info  btn-sm btn-block mt-2" href="{% url 'products:product-update' product.pk %}">Update
                 Product</a>
-            <a class="btn btn-danger  btn-sm btn-block mt-2" href="#">Delete Product</a>
+            <a class="btn btn-danger  btn-sm btn-block mt-2"
+                href="{% url 'products:product-delete' product.pk %}">Delete Product</a>
 
         </div>
     </div>
