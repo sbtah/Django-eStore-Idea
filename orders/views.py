@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import HttpResponseRedirect, render, redirect
 from django.contrib import messages
+from django.urls import reverse
 from .models import Order
 from .forms import OrderForm
 
@@ -40,6 +41,26 @@ def order_create(request):
             form.save()
             messages.success(request, ('Order created.'))
             return redirect('core:dashboard')
+
+    return render(request, 'orders/order_create.html', {
+
+        'form': form,
+
+    })
+
+
+def order_update(request, pk):
+
+    order = Order.objects.get(pk=pk)
+    form = OrderForm(instance=order)
+
+    if request.method == 'POST':
+        form = OrderForm(request.POST, instance=order)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, ('Order updated.'))
+            return HttpResponseRedirect(reverse('orders:order-detail', args=[order.pk]))
 
     return render(request, 'orders/order_create.html', {
 

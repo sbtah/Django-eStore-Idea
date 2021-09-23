@@ -7,7 +7,8 @@
             <h5>Order:</h5>
             <p><strong>{{ order.id }}</strong></p>
             <hr>
-            <a class="btn btn-info  btn-sm btn-block mt-2" href="#">Update Order</a>
+            <a class="btn btn-info  btn-sm btn-block mt-2" href="{% url 'orders:order-update' order.pk %}">Update
+                Order</a>
             <a class="btn btn-danger  btn-sm btn-block mt-2" href="#">Delete Delete</a>
 
         </div>
@@ -49,11 +50,11 @@
     </div>
 </div>
 <br>
-<!-- <div class="row">
+<div class="row">
     <div class="col-md">
         <div class="card card-body">
             <h5>Order Data:</h5>
-            <table class="table table-hover align-middle">
+            <table class="table table-hover text-center align-middle">
                 <thead>
                     <tr>
                         <th>Order ID:</th>
@@ -65,19 +66,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for order in related_orders %}
                     <tr>
                         <th>{{ order.id }}</th>
-                        <th>{{ order.customer.full_name }}</th>
-                        <th>{{ order.date_created }}</th>
-                        <th>{{ order.status }}</th>
-                        <th><a class="btn btn-sm btn-info" href="#">Update</a></th>
-                        <th><a class="btn btn-sm btn-danger" href="#">Remove</a></th>
+                        <th class="my-main-text">{{ order.customer.full_name }}</th>
+                        <th class="my-main-text">{{ order.created }}</th>
+                        {% if order.status == 'PENDING'%}
+                        <th><span class="mystatus-pending"><strong>{{ order.status }}</strong></span></th>
+                        {% elif order.status == 'READY' %}
+                        <th><span class="mystatus-ready"><strong>{{ order.status }}</strong></span></th>
+                        {% elif order.status == 'DELIVERED' %}
+                        <th><span class="mystatus-delivered"><strong>{{ order.status }}</strong></span></th>
+                        {% endif %}
+
+
+                        <th><a class="btn btn-sm btn-info m-2 w-100" href="#">Update</a></th>
+                        <th><a class="btn btn-sm btn-danger m-2 w-100" href="#">Remove</a></th>
                     </tr>
-                    {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
-</div> -->
+</div>
 {% endblock %}
