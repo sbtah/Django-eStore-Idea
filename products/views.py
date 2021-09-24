@@ -3,13 +3,18 @@ from django.contrib import messages
 from django.urls import reverse
 from .models import Product
 from .forms import ProductForm
+from .filters import ProductFilter
 
 
 # All Products.
 def product_list(request):
 
     products = Product.objects.all()
+    my_filter = ProductFilter(request.GET, queryset=products)
+    products = my_filter.qs
+
     context = {
+        'my_filter': my_filter,
         'products': products,
     }
 

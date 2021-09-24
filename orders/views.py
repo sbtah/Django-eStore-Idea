@@ -6,7 +6,7 @@ from django.urls import reverse
 from .models import Order
 from .forms import OrderForm
 from customers.models import Customer
-from core.filters import OrderFilter
+from .filters import OrderFilter
 
 
 def order_list(request):

@@ -1,5 +1,5 @@
 import django_filters
-from orders.models import Order
+from .models import Order
 
 
 class OrderFilter(django_filters.FilterSet):
