@@ -1,8 +1,11 @@
+from django.forms.widgets import Select
 from django.shortcuts import HttpResponseRedirect, render, redirect
+from django.forms import inlineformset_factory
 from django.contrib import messages
 from django.urls import reverse
 from .models import Order
 from .forms import OrderForm
+from customers.models import Customer
 
 
 def order_list(request):
@@ -45,6 +48,36 @@ def order_create(request):
     return render(request, 'orders/order_create.html', {
 
         'form': form,
+
+    })
+
+
+def order_create_customer(request, pk):
+
+    OrderFormSet = inlineformset_factory(
+        Customer,
+        Order,
+        fields=('product', 'status'),
+        widgets={
+            'product': Select(attrs={'class': 'form-control'}),
+            'status': Select(attrs={'class': 'form-control'}),
+        },
+    )
+    customer = Customer.objects.get(pk=pk)
+    formset = OrderFormSet(queryset=Order.objects.none(), instance=customer)
+    # form = OrderForm(initial={'customer': customer})
+
+    if request.method == 'POST':
+        # form = OrderForm(request.POST)
+        formset = OrderFormSet(request.POST, instance=customer)
+        if formset.is_valid():
+            formset.save()
+            messages.success(request, ('Order created.'))
+            return redirect('core:dashboard')
+
+    return render(request, 'orders/order_formset.html', {
+
+        'formset': formset,
 
     })
 

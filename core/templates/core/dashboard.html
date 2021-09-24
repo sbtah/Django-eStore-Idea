@@ -26,12 +26,12 @@
         <h5>Last 5 Orders:</h5>
         <hr>
         <div class="card card-body text-center shadow">
-            <a class="btn btn-info btn-sm btn-block" href="{% url 'orders:order-create' %}">Create Order</a>
+            <!-- <a class="btn btn-info btn-sm btn-block" href="{% url 'orders:order-create' %}">Create Order</a> -->
             <table class="table table-hover text-center align-middle">
                 <thead>
                     <tr>
                         <th scope="col">Product</th>
-                        <th scope="col">Date Ordered</th>
+                        <th scope="col">Customer</th>
                         <th scope="col">Status</th>
                         <th scope="col">Update</th>
                         <th scope="col">Remove</th>
@@ -42,7 +42,7 @@
                     <tr>
                         <th><a class="my-main-text" href="{{ order.get_absolute_url }}">{{ order.product.name }}</a>
                         </th>
-                        <th class="my-main-text">{{ order.date_created }}</th>
+                        <th class="my-main-text">{{ order.customer.full_name}}</th>
                         {% if order.status == 'PENDING'%}
                         <th><span class="mystatus-pending"><strong>{{ order.status }}</strong></span></th>
                         {% elif order.status == 'READY' %}

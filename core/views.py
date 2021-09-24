@@ -17,7 +17,7 @@ def home_page(request):
 
 def dashboard(request):
 
-    orders = Order.objects.all()
+    orders = Order.objects.all().order_by('-created')
     customers = Customer.objects.all()
     total_customers = customers.count()
     total_orders = orders.count()

@@ -8,6 +8,8 @@
             <h5>Customer:</h5>
             <p><strong>{{ customer.full_name }}</strong></p>
             <hr>
+            <a class="btn btn-outline-primary  btn-sm btn-block mt-2"
+                href="{% url 'orders:order-create-customer' customer.pk %}">Place Order</a>
             <a class="btn btn-info  btn-sm btn-block mt-2"
                 href="{% url 'customers:customer-update' customer.pk %}">Update Customer</a>
             <a class="btn btn-danger  btn-sm btn-block mt-2"
