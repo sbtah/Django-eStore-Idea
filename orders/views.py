@@ -6,15 +6,20 @@ from django.urls import reverse
 from .models import Order
 from .forms import OrderForm
 from customers.models import Customer
+from core.filters import OrderFilter
 
 
 def order_list(request):
 
     orders = Order.objects.all().order_by('-created')
+    my_filter = OrderFilter(request.GET, queryset=orders)
+    orders = my_filter.qs
 
     return render(request, 'orders/order_list.html', {
 
+        'my_filter': my_filter,
         'orders': orders,
+
     })
 
 
