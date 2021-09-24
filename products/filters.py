@@ -1,4 +1,5 @@
 import django_filters
+from django import forms
 from .models import Product
 
 
@@ -7,4 +8,4 @@ class ProductFilter(django_filters.FilterSet):
     class Meta:
 
         model = Product
-        fields = '__all__'
+        fields = ['name', 'brand', 'category', 'price']
