@@ -1,3 +1,4 @@
+from orders.models import Order
 from django.contrib import messages
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -5,6 +6,7 @@ from django.urls import reverse
 from .models import Customer
 from .forms import CustomerForm
 from .filters import CustomerFilter
+from orders.filters import OrderFilterForCustomer
 
 
 def customer_list(request):
@@ -26,10 +28,14 @@ def customer_detail(request, pk):
     related_orders = customer.order_set.all()
     total_orders = related_orders.count()
 
+    my_filter = OrderFilterForCustomer(request.GET, queryset=related_orders)
+    related_orders = my_filter.qs
+
     return render(request, 'customers/customer_detail.html', {
         'customer': customer,
         'related_orders': related_orders,
         'total_orders': total_orders,
+        'my_filter': my_filter,
     })
 
 

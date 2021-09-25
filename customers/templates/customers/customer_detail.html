@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}{{ customer.full_name }}{% endblock title %}
 {% block content %}
-
+{% load crispy_forms_tags %}
 <div class="row mt-5">
     <div class="col-md">
         <div class="card card-body shadow">
@@ -38,7 +38,7 @@
     <div class="col">
         <div class="card card-body shadow">
             <form method="get">
-
+                {{ my_filter.form|crispy }}
                 <button class="btn btn-primary" type="submit">Search</button>
             </form>
         </div>
@@ -48,14 +48,12 @@
 <div class="row">
     <div class="col-md">
         <div class="card card-body shadow">
-            <h5>Orders :</h5>
+            <h5><strong>Orders :</strong></h5>
             <table class="table table-hover align-middle text-center">
                 <thead>
                     <tr>
-                        <th>Order ID</th>
                         <th>Product</th>
-
-
+                        <th>Created</th>
                         <th>Status</th>
                         <th>Update</th>
                         <th>Remove</th>
@@ -64,8 +62,8 @@
                 <tbody>
                     {% for order in related_orders %}
                     <tr>
-                        <th>{{ order.id }}</th>
                         <th class="my-main-text">{{ order.product.name }}</th>
+                        <th class="my-main-text">{{ order.date_created}}</th>
                         {% if order.status == 'PENDING'%}
                         <th><span class="mystatus-pending"><strong>{{ order.status }}</strong></span></th>
                         {% elif order.status == 'READY' %}
@@ -73,9 +71,9 @@
                         {% elif order.status == 'DELIVERED' %}
                         <th><span class="mystatus-delivered"><strong>{{ order.status }}</strong></span></th>
                         {% endif %}
-                        <th><a class="btn btn-sm btn-info m-2 w-100"
+                        <th><a class="btn btn-sm btn-info w-100"
                                 href="{% url 'orders:order-update' order.pk %}">Update</a></th>
-                        <th><a class="btn btn-sm btn-danger m-2 w-100"
+                        <th><a class="btn btn-sm btn-danger w-100"
                                 href="{% url 'orders:order-delete' order.pk %}">Remove</a></th>
                     </tr>
                     {% endfor %}

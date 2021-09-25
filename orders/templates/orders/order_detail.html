@@ -58,9 +58,9 @@
             <table class="table table-hover text-center align-middle">
                 <thead>
                     <tr>
-                        <th>Order ID:</th>
+
                         <th>Customer Name</th>
-                        <th>Date Orderd</th>
+                        <th>Created</th>
                         <th>Status</th>
                         <th>Update</th>
                         <th>Remove</th>
@@ -68,7 +68,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th>{{ order.id }}</th>
+
                         <th class="my-main-text">{{ order.customer.full_name }}</th>
                         <th class="my-main-text">{{ order.date_created }}</th>
                         {% if order.status == 'PENDING'%}
@@ -78,8 +78,8 @@
                         {% elif order.status == 'DELIVERED' %}
                         <th><span class="mystatus-delivered"><strong>{{ order.status }}</strong></span></th>
                         {% endif %}
-                        <th><a class="btn btn-sm btn-info m-2 w-100" href="#">Update</a></th>
-                        <th><a class="btn btn-sm btn-danger m-2 w-100" href="#">Remove</a></th>
+                        <th><a class="btn btn-sm btn-info w-100" href="#">Update</a></th>
+                        <th><a class="btn btn-sm btn-danger w-100" href="#">Remove</a></th>
                     </tr>
                 </tbody>
             </table>
