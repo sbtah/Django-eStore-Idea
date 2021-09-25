@@ -5,6 +5,7 @@ from django.urls import reverse
 from .models import Brand
 from .forms import BrandForm
 from .filters import BrandFilter
+from products.filters import ProductFilterForModel
 
 
 def brand_list(request):
@@ -27,11 +28,15 @@ def brand_detail(request, pk):
     related_products = brand.product_set.all()
     total_orders = related_products.count()
 
+    my_filter = ProductFilterForModel(request.GET, queryset=related_products)
+    related_products = my_filter.qs
+
     return render(request, 'brands/brand_detail.html', {
 
         'brand': brand,
         'total_orders': total_orders,
         'related_products': related_products,
+        'my_filter': my_filter,
 
     })
 

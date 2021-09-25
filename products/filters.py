@@ -13,13 +13,12 @@ class ProductFilter(django_filters.FilterSet):
         fields = ['name', 'brand', 'category', 'price']
 
 
-class OrderFilterForProduct(django_filters.FilterSet):
+class ProductFilterForModel(django_filters.FilterSet):
 
-    start_date = DateFilter(field_name='created', lookup_expr='gte')
-
-    end_date = DateFilter(field_name='created', lookup_expr='lte')
+    name = django_filters.CharFilter(lookup_expr='icontains')
 
     class Meta:
 
         model = Product
-        fields = '__all__'
+        fields = ['name', 'brand', 'category', 'price']
+        exclude = ['brand']

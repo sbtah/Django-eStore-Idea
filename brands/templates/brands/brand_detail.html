@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}{{ brand.name }}{% endblock title %}
 {% block content %}
-
+{% load crispy_forms_tags %}
 <div class="row mt-5">
     <div class="col-md">
         <div class="card card-body shadow">
@@ -36,8 +36,8 @@
     <div class="col">
         <div class="card card-body shadow">
             <form method="get">
-
-                <button class="btn btn-primary" type="submit">Search</button>
+                {{ my_filter.form | crispy }}
+                <button class="btn btn-primary mt-3 w-100" type="submit">Search</button>
             </form>
         </div>
     </div>
