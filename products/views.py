@@ -4,6 +4,7 @@ from django.urls import reverse
 from .models import Product
 from .forms import ProductForm
 from .filters import ProductFilter
+from orders.filters import OrderFilterForModel
 
 
 # All Products.
@@ -24,16 +25,18 @@ def product_list(request):
 def product_detail(request, pk):
 
     product = Product.objects.get(pk=pk)
-
     related_orders = product.order_set.all()
-
     total_orders = related_orders.count() / 100
+
+    my_filter = OrderFilterForModel(request.GET, queryset=related_orders)
+    related_orders = my_filter.qs
 
     return render(request, 'products/product_detail.html', {
 
         'product': product,
         'related_orders': related_orders,
         'total_orders': total_orders,
+        'my_filter': my_filter,
 
     })
 

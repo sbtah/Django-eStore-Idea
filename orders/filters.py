@@ -15,7 +15,7 @@ class OrderFilter(django_filters.FilterSet):
         fields = '__all__'
 
 
-class OrderFilterForCustomer(django_filters.FilterSet):
+class OrderFilterForModel(django_filters.FilterSet):
 
     start_date = DateFilter(field_name='created', lookup_expr='gte')
 

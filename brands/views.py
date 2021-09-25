@@ -4,14 +4,18 @@ from django.contrib import messages
 from django.urls import reverse
 from .models import Brand
 from .forms import BrandForm
+from .filters import BrandFilter
 
 
 def brand_list(request):
 
     brands = Brand.objects.all()
+    my_filter = BrandFilter(request.GET, queryset=brands)
+    brands = my_filter.qs
 
     return render(request, 'brands/brand_list.html', {
 
+        'my_filter': my_filter,
         'brands': brands,
 
     })
