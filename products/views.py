@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import HttpResponseRedirect, render, redirect
 from django.contrib import messages
 from django.urls import reverse
@@ -8,6 +9,7 @@ from orders.filters import OrderFilter1, OrderFilter2
 
 
 # All Products.
+@login_required(login_url='accounts:login')
 def product_list(request):
 
     products = Product.objects.all()
@@ -22,6 +24,7 @@ def product_list(request):
     return render(request, 'products/product_list.html', context)
 
 
+@login_required(login_url='accounts:login')
 def product_detail(request, pk):
 
     product = Product.objects.get(pk=pk)
@@ -41,6 +44,7 @@ def product_detail(request, pk):
     })
 
 
+@login_required(login_url='accounts:login')
 def product_create(request):
 
     form = ProductForm()
@@ -60,6 +64,7 @@ def product_create(request):
     })
 
 
+@login_required(login_url='accounts:login')
 def product_update(request, pk):
 
     product = Product.objects.get(pk=pk)
@@ -80,6 +85,7 @@ def product_update(request, pk):
     })
 
 
+@login_required(login_url='accounts:login')
 def product_delete(request, pk):
 
     product = Product.objects.get(pk=pk)

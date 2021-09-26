@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from orders.models import Order
 from customers.models import Customer
@@ -15,6 +16,7 @@ def home_page(request):
     })
 
 
+@login_required(login_url='accounts:login')
 def dashboard(request):
 
     orders = Order.objects.all().order_by('-created')

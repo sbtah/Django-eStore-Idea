@@ -1,4 +1,5 @@
 from django.http.response import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse
@@ -8,6 +9,7 @@ from .filters import BrandFilter
 from products.filters import ProductFilterForModel
 
 
+@login_required(login_url='accounts:login')
 def brand_list(request):
 
     brands = Brand.objects.all()
@@ -22,6 +24,7 @@ def brand_list(request):
     })
 
 
+@login_required(login_url='accounts:login')
 def brand_detail(request, pk):
 
     brand = Brand.objects.get(pk=pk)
@@ -41,6 +44,7 @@ def brand_detail(request, pk):
     })
 
 
+@login_required(login_url='accounts:login')
 def brand_create(request):
 
     form = BrandForm()
@@ -59,6 +63,7 @@ def brand_create(request):
     })
 
 
+@login_required(login_url='accounts:login')
 def brand_update(request, pk):
 
     product = Brand.objects.get(pk=pk)
@@ -79,6 +84,7 @@ def brand_update(request, pk):
     })
 
 
+@login_required(login_url='accounts:login')
 def brand_delete(request, pk):
 
     brand = Brand.objects.get(pk=pk)

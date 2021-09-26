@@ -2,6 +2,8 @@ from django.shortcuts import redirect, render
 from django.contrib import messages
 from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login, logout
+#
+from django.contrib.auth.decorators import login_required
 
 
 def register_user(request):
@@ -31,12 +33,13 @@ def login_user(request):
         password = request.POST.get('password')
 
         user = authenticate(request, username=username, password=password)
+
         if user is not None:
             login(request, user)
-            messages.success(request, (f'{username} were logged in.'))
+            messages.success(request, (f'{username}, you were logged in.'))
             return redirect('core:dashboard')
         else:
-            messages.success(request, ('Wrong login or password.'))
+            messages.info(request, ('Wrong login or password.'))
 
     return render(request, 'accounts/login_user.html', {
 
@@ -48,4 +51,4 @@ def logout_user(request):
     logout(request)
     messages.success(
         request, ('You Were Logged Out.'))
-    return redirect('/')
+    return redirect('accounts:login')

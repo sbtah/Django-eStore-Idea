@@ -1,4 +1,5 @@
 from orders.models import Order
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -9,6 +10,7 @@ from .filters import CustomerFilter
 from orders.filters import OrderFilter1, OrderFilter2
 
 
+@login_required(login_url='accounts:login')
 def customer_list(request):
 
     customers = Customer.objects.all()
@@ -22,6 +24,7 @@ def customer_list(request):
     })
 
 
+@login_required(login_url='accounts:login')
 def customer_detail(request, pk):
 
     customer = Customer.objects.get(pk=pk)
@@ -39,6 +42,7 @@ def customer_detail(request, pk):
     })
 
 
+@login_required(login_url='accounts:login')
 def customer_create(request):
 
     form = CustomerForm()
@@ -56,6 +60,7 @@ def customer_create(request):
     })
 
 
+@login_required(login_url='accounts:login')
 def customer_update(request, pk):
 
     customer = Customer.objects.get(pk=pk)
@@ -76,6 +81,7 @@ def customer_update(request, pk):
     })
 
 
+@login_required(login_url='accounts:login')
 def customer_delete(request, pk):
 
     customer = Customer.objects.get(pk=pk)

@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.forms.widgets import Select
 from django.shortcuts import HttpResponseRedirect, render, redirect
 from django.forms import inlineformset_factory
@@ -9,6 +10,7 @@ from customers.models import Customer
 from .filters import OrderFilter
 
 
+@login_required(login_url='accounts:login')
 def order_list(request):
 
     orders = Order.objects.all().order_by('-created')
@@ -23,6 +25,7 @@ def order_list(request):
     })
 
 
+@login_required(login_url='accounts:login')
 def order_detail(request, pk):
 
     order = Order.objects.get(pk=pk)
@@ -39,6 +42,7 @@ def order_detail(request, pk):
     })
 
 
+@login_required(login_url='accounts:login')
 def order_create(request):
 
     form = OrderForm()
@@ -57,6 +61,7 @@ def order_create(request):
     })
 
 
+@login_required(login_url='accounts:login')
 def order_create_customer(request, pk):
 
     OrderFormSet = inlineformset_factory(
@@ -87,6 +92,7 @@ def order_create_customer(request, pk):
     })
 
 
+@login_required(login_url='accounts:login')
 def order_update(request, pk):
 
     order = Order.objects.get(pk=pk)
@@ -107,6 +113,7 @@ def order_update(request, pk):
     })
 
 
+@login_required(login_url='accounts:login')
 def order_delete(request, pk):
 
     order = Order.objects.get(pk=pk)
