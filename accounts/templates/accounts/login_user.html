@@ -3,19 +3,28 @@
 {% block title %}Login{% endblock title %}
 {% block content %}
 <div class="container mt-5">
-    <h2 class="subhead fs-4 mb-0 text-center">Login:</h2>
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body shadow">
+                <h5 class="text-center pt-2"><strong>Login</strong></h5>
+            </div>
+            <div class="card card-body shadow">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="username" class="form-label"></label>
+                        <input type="text" class="form-control" name="username" aria-describedby="emailHelp"
+                            placeholder="Username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label"></label>
+                        <input type="password" class="form-control" name="password" placeholder="Password">
+                    </div>
+                    <button class="btn btn-info w-100" type="submit">Login</button>
+                </form>
 
-    <form action="" method="POST">
-        {% csrf_token %}
-        <div class="mb-3">
-            <label for="username" class="form-label"></label>
-            <input type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Username">
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="password" class="form-label"></label>
-            <input type="password" class="form-control" name="password" placeholder="Password">
-        </div>
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
+    </div>
 </div>
 {% endblock content %}

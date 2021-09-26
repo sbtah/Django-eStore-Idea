@@ -2,14 +2,21 @@
 {% load static %}
 {% block title %}Register{% endblock title %}
 {% block content %}
-<div class="container mt-3">
-    <h2 class="text-center">Register</h2>
-</div>
-<div class="container-sm mt-3 shadow p-4 mb-5 rounded">
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-info w-100" type="submit">Register</button>
-    </form>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body shadow">
+                <h5 class="text-center pt-2"><strong>Register</strong></h5>
+            </div>
+            <div class="card card-body shadow">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-info w-100" type="submit">Register</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock content %}
