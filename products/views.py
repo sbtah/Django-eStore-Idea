@@ -5,11 +5,13 @@ from django.urls import reverse
 from .models import Product
 from .forms import ProductForm
 from .filters import ProductFilter
+from accounts.decorators import allowed_users
 from orders.filters import OrderFilter1, OrderFilter2
 
 
 # All Products.
 @login_required(login_url='accounts:login')
+@allowed_users(allowed_roles=['admin'])
 def product_list(request):
 
     products = Product.objects.all()
@@ -25,6 +27,7 @@ def product_list(request):
 
 
 @login_required(login_url='accounts:login')
+@allowed_users(allowed_roles=['admin'])
 def product_detail(request, pk):
 
     product = Product.objects.get(pk=pk)
@@ -45,6 +48,7 @@ def product_detail(request, pk):
 
 
 @login_required(login_url='accounts:login')
+@allowed_users(allowed_roles=['admin'])
 def product_create(request):
 
     form = ProductForm()
@@ -65,6 +69,7 @@ def product_create(request):
 
 
 @login_required(login_url='accounts:login')
+@allowed_users(allowed_roles=['admin'])
 def product_update(request, pk):
 
     product = Product.objects.get(pk=pk)
@@ -86,6 +91,7 @@ def product_update(request, pk):
 
 
 @login_required(login_url='accounts:login')
+@allowed_users(allowed_roles=['admin'])
 def product_delete(request, pk):
 
     product = Product.objects.get(pk=pk)

@@ -6,10 +6,12 @@ from django.urls import reverse
 from .models import Brand
 from .forms import BrandForm
 from .filters import BrandFilter
+from accounts.decorators import allowed_users
 from products.filters import ProductFilterForModel
 
 
 @login_required(login_url='accounts:login')
+@allowed_users(allowed_roles=['admin'])
 def brand_list(request):
 
     brands = Brand.objects.all()
@@ -25,6 +27,7 @@ def brand_list(request):
 
 
 @login_required(login_url='accounts:login')
+@allowed_users(allowed_roles=['admin'])
 def brand_detail(request, pk):
 
     brand = Brand.objects.get(pk=pk)
@@ -45,6 +48,7 @@ def brand_detail(request, pk):
 
 
 @login_required(login_url='accounts:login')
+@allowed_users(allowed_roles=['admin'])
 def brand_create(request):
 
     form = BrandForm()
@@ -64,6 +68,7 @@ def brand_create(request):
 
 
 @login_required(login_url='accounts:login')
+@allowed_users(allowed_roles=['admin'])
 def brand_update(request, pk):
 
     product = Brand.objects.get(pk=pk)
@@ -85,6 +90,7 @@ def brand_update(request, pk):
 
 
 @login_required(login_url='accounts:login')
+@allowed_users(allowed_roles=['admin'])
 def brand_delete(request, pk):
 
     brand = Brand.objects.get(pk=pk)

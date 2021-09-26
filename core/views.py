@@ -3,6 +3,7 @@ from django.shortcuts import render
 from orders.models import Order
 from customers.models import Customer
 from products.models import Product
+from accounts.decorators import allowed_users
 
 
 def home_page(request):
@@ -17,6 +18,7 @@ def home_page(request):
 
 
 @login_required(login_url='accounts:login')
+@allowed_users(allowed_roles=['admin'])
 def dashboard(request):
 
     orders = Order.objects.all().order_by('-created')
