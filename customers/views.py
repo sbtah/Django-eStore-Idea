@@ -6,7 +6,7 @@ from django.urls import reverse
 from .models import Customer
 from .forms import CustomerForm
 from .filters import CustomerFilter
-from orders.filters import OrderFilterForModel
+from orders.filters import OrderFilter1, OrderFilter2
 
 
 def customer_list(request):
@@ -28,7 +28,7 @@ def customer_detail(request, pk):
     related_orders = customer.order_set.all()
     total_orders = related_orders.count()
 
-    my_filter = OrderFilterForModel(request.GET, queryset=related_orders)
+    my_filter = OrderFilter1(request.GET, queryset=related_orders)
     related_orders = my_filter.qs
 
     return render(request, 'customers/customer_detail.html', {

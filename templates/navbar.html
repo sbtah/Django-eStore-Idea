@@ -70,7 +70,7 @@
                         {{ request.user.username }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                        <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>
                         <li><a class="dropdown-item" href="#">Profile</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>

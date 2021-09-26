@@ -33,8 +33,10 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, ('You were logged in.'))
+            messages.success(request, (f'{username} were logged in.'))
             return redirect('core:dashboard')
+        else:
+            messages.success(request, ('Wrong login or password.'))
 
     return render(request, 'accounts/login_user.html', {
 
@@ -43,8 +45,7 @@ def login_user(request):
 
 def logout_user(request):
 
-    return render(request, 'accounts/logout_user.html', {
-
-
-
-    })
+    logout(request)
+    messages.success(
+        request, ('You Were Logged Out.'))
+    return redirect('/')
